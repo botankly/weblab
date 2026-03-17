@@ -1,0 +1,64 @@
+:root {
+  /* Core Color Tokens */
+  --color-primary: #535bf2;
+  --color-primary-hover: #646cff;
+  --color-bg-dark: #121212;
+  --color-bg-surface: #1a1a1a;
+  --color-bg-card: #1e1e1e;
+  --color-text-main: #e0e0e0;
+  --color-text-dim: #888888;
+  --color-text-light: #ffffff;
+  --color-error: #ff4d4d;
+  --color-border: #333333;
+  --color-border-focus: #2563EB;
+  --color-secondary: #6366f1;
+  
+  /* Image CSS Aliases */
+  --color-bg: var(--color-bg-dark);
+  --color-text: var(--color-text-main);
+  --color-surface: var(--color-bg-surface);
+  --color-muted: var(--color-text-dim);
+
+  /* Spacing Tokens */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 2rem;
+  --space-xl: 4rem;
+  --space-2xl: 8rem;
+  --space-3xl: 12rem;
+  
+  /* Legacy/Support Aliases */
+  --spacing-xs: var(--space-xs);
+  --spacing-sm: var(--space-sm);
+  --spacing-md: var(--space-md);
+  --spacing-lg: var(--space-lg);
+  --spacing-xl: var(--space-xl);
+
+  /* Fluid Typography Tokens */
+  --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.25rem);
+  --text-sm: 0.875rem;
+  --text-lg: clamp(1.15rem, 1rem + 0.5vw, 1.5rem);
+  --text-xl: clamp(1.25rem, 1.1rem + 0.75vw, 1.75rem);
+  --text-2xl: clamp(1.5rem, 1.3rem + 1vw, 2.25rem);
+  --text-3xl: clamp(2rem, 1.5rem + 2.5vw, 3.5rem);
+
+  /* Fonts */
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-family: var(--font-sans);
+
+  /* Borders & Radius */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-full: 9999px;
+  --border-radius: var(--radius-md);
+  --border-radius-sm: var(--radius-sm);
+  
+  /* Transitions */
+  --transition-fast: all 0.3s ease;
+  --transition-normal: all 0.4s ease;
+  
+  /* Shadows */
+  --shadow-main: 0 10px 40px rgba(0,0,0,0.6);
+  --shadow-lg: 0 15px 45px rgba(0,0,0,0.7);
+}
