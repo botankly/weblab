@@ -1,17 +1,7 @@
 import { useState, useEffect } from 'react'
 import './App.css'
 import profilResmi from './assets/hero.png'
-
-interface Project {
-  id: number;
-  title: string;
-  description: string;
-  tech: string[];
-  year: number;
-  category: string;
-  featured: boolean;
-  image: string;
-}
+import type { Project } from './types/project'
 
 function App() {
   const [projects, setProjects] = useState<Project[]>([]);
