@@ -24,8 +24,8 @@ export interface Project {
 
 // Filtre durumu
 export interface FilterState {
-  category: Category | "all";
   search: string;
-  sortBy: SortField;
+  category: Category | "all";
+  sortField: SortField;
   sortOrder: SortOrder;
 }
