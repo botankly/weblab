@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1,
+    "title": "TrendSepetix",
+    "description": "Alışveriş sepeti verilerini analiz ederek kullanıcı davranışlarını raporlayan sistem.",
+    "tech": ["Python", "React", "MySQL"],
+    "image": "TrendSepetix"
+  },
+  {
+    "id": 2,
+    "title": "Web Lab 1",
+    "description": "Temel web teknolojileri ve sürüm kontrol sistemleri üzerine yapılan başlangıç çalışması.",
+    "tech": ["HTML", "CSS", "JavaScript", "Vite"],
+    "image": "Web Lab 1"
+  }
+]
