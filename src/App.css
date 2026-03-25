@@ -181,6 +181,31 @@ figcaption {
   border: 1px dashed #444;
 }
 
+.featured-card {
+  border: 2px solid #535bf2 !important;
+  box-shadow: 0 0 20px rgba(83, 91, 242, 0.2);
+  position: relative;
+}
+
+.featured-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #535bf2;
+  color: white;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  z-index: 10;
+}
+
+.project-year {
+  font-size: 0.9rem;
+  color: #888;
+  font-weight: normal;
+}
+
 /* Contact Form Styling */
 .contact-form {
   max-width: 600px;

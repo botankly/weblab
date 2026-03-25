@@ -7,6 +7,9 @@ interface Project {
   title: string;
   description: string;
   tech: string[];
+  year: number;
+  category: string;
+  featured: boolean;
   image: string;
 }
 
@@ -64,9 +67,12 @@ function App() {
           <h2>Projelerim</h2>
           <div className="project-grid">
             {projects.map((project) => (
-              <article key={project.id} className="project-card">
-                <div className="project-sample">{project.image}</div>
-                <h3>{project.title}</h3>
+              <article key={project.id} className={`project-card ${project.featured ? 'featured-card' : ''}`}>
+                <div className="project-sample">
+                  {project.title.split(' ').map(word => word[0]).join('')}
+                </div>
+                {project.featured && <div className="featured-badge">Öne Çıkan</div>}
+                <h3>{project.title} <span className="project-year">({project.year})</span></h3>
                 <p>{project.description}</p>
                 <p><strong>Teknolojiler:</strong> {project.tech.join(', ')}</p>
                 <figcaption>{project.title} görseli</figcaption>
