@@ -2,13 +2,13 @@ import { useState, useEffect } from 'react'
 import './App.css'
 import profilResmi from './assets/hero.png'
 import type { Project } from './types/project'
+import { fetchProjects } from './services/projectService'
 
 function App() {
   const [projects, setProjects] = useState<Project[]>([]);
 
   useEffect(() => {
-    fetch('/data/projects.json')
-      .then(response => response.json())
+    fetchProjects()
       .then(data => setProjects(data))
       .catch(error => console.error('Error fetching projects:', error));
   }, []);
