@@ -4,6 +4,7 @@ import { fetchProjects } from "../../services/projectService";
 import { applyFilters } from "../../utils/projectHelpers";
 import ProjectFilter from "../forms/ProjectFilter";
 import ProjectCard from "./ProjectCard";
+import Alert from "../ui/Alert";
 
 export default function ProjectList() {
   const [projects, setProjects] = useState<Project[]>([]);
@@ -31,7 +32,6 @@ export default function ProjectList() {
     loadProjects();
   }, []);
 
-  // useMemo ile optimize edilmiş filtreleme ve sıralama
   const filteredProjects = useMemo(() => {
     return applyFilters(projects, search, category, sortField, sortOrder);
   }, [projects, search, category, sortField, sortOrder]);
@@ -45,23 +45,6 @@ export default function ProjectList() {
     );
   }
 
-  if (error) {
-    return (
-      <div className="py-20 text-center px-4">
-        <div className="bg-red-50 text-red-600 p-6 rounded-2xl max-w-md mx-auto border border-red-100">
-          <p className="font-bold mb-2">Hata!</p>
-          <p>{error}</p>
-          <button 
-            onClick={() => window.location.reload()}
-            className="mt-4 text-sm underline hover:no-underline"
-          >
-            Tekrar Denene
-          </button>
-        </div>
-      </div>
-    );
-  }
-
   return (
     <section id="projects" className="py-20 bg-white dark:bg-gray-950">
       <div className="max-w-6xl mx-auto px-4">
@@ -69,6 +52,20 @@ export default function ProjectList() {
           <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">Projelerim</h2>
           <p className="text-gray-600 dark:text-gray-400">Üzerinde çalıştığım ve katkıda bulunduğum bazı projeler</p>
         </div>
+
+        {error && (
+          <div className="mb-8 max-w-md mx-auto">
+            <Alert variant="error" title="Hata!">
+              {error}
+              <button 
+                onClick={() => window.location.reload()}
+                className="block mt-2 text-xs underline"
+              >
+                Tekrar Dene
+              </button>
+            </Alert>
+          </div>
+        )}
 
         <ProjectFilter 
           search={search}
