@@ -1,96 +1,158 @@
-import { useState, useEffect, useMemo } from "react";
-import { Project, Category, SortField, SortOrder } from "../../types/project";
+import {
+  useState, useEffect, useMemo
+} from "react";
+import type {
+  Project, Category, SortField, SortOrder
+} from "../../types/project";
 import { fetchProjects } from "../../services/projectService";
 import { applyFilters } from "../../utils/projectHelpers";
 import ProjectFilter from "../forms/ProjectFilter";
-import ProjectCard from "./ProjectCard";
-import Alert from "../ui/Alert";
+import Card from "../ui/Card";
 
 export default function ProjectList() {
-  const [projects, setProjects] = useState<Project[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  // Filter & Sort State
+  // State
+  const [projects, setProjects] =
+    useState<Project[]>([]);
   const [search, setSearch] = useState("");
-  const [category, setCategory] = useState<Category | "all">("all");
-  const [sortField, setSortField] = useState<SortField>("year");
-  const [sortOrder, setSortOrder] = useState<SortOrder>("desc");
+  const [category, setCategory] =
+    useState<Category | "all">("all");
+  const [sortField, setSortField] =
+    useState<SortField>("year");
+  const [sortOrder, setSortOrder] =
+    useState<SortOrder>("desc");
+  const [loading, setLoading] = useState(true);
+  const [error, setError] =
+    useState<string | null>(null);
 
+  // Veri cekme
   useEffect(() => {
-    const loadProjects = async () => {
+    async function load() {
       try {
         setLoading(true);
+        setError(null);
         const data = await fetchProjects();
         setProjects(data);
       } catch (err) {
-        setError(err instanceof Error ? err.message : "Bilinmeyen bir hata oluştu.");
+        setError(
+          err instanceof Error
+            ? err.message
+            : "Bilinmeyen hata olustu"
+        );
       } finally {
         setLoading(false);
       }
-    };
-    loadProjects();
+    }
+    load();
   }, []);
 
-  const filteredProjects = useMemo(() => {
-    return applyFilters(projects, search, category, sortField, sortOrder);
-  }, [projects, search, category, sortField, sortOrder]);
-
-  if (loading) {
-    return (
-      <div className="py-20 text-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-        <p className="text-gray-500">Projeler yükleniyor...</p>
-      </div>
-    );
-  }
+  // Filtrelenmis ve siralanmis veri (memoized)
+  const filtered = useMemo(
+    () => applyFilters(
+      projects, search, category,
+      sortField, sortOrder
+    ),
+    [projects, search, category,
+      sortField, sortOrder]
+  );
 
   return (
-    <section id="projects" className="py-20 bg-white dark:bg-gray-950">
-      <div className="max-w-6xl mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">Projelerim</h2>
-          <p className="text-gray-600 dark:text-gray-400">Üzerinde çalıştığım ve katkıda bulunduğum bazı projeler</p>
-        </div>
+    <section id="projects" className="py-16 px-4">
+      <div className="max-w-6xl mx-auto">
+        <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
+          Projelerim
+        </h2>
+        <p className="text-gray-600 dark:text-gray-400 mb-8">
+          Uzerinde calistigim projeler
+        </p>
 
+        {/* Hata */}
         {error && (
-          <div className="mb-8 max-w-md mx-auto">
-            <Alert variant="error" title="Hata!">
-              {error}
-              <button 
-                onClick={() => window.location.reload()}
-                className="block mt-2 text-xs underline"
-              >
-                Tekrar Dene
-              </button>
-            </Alert>
+          <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-6">
+            <p className="text-red-800">{error}</p>
+            <button
+              onClick={() => window.location.reload()}
+              className="text-sm text-red-600 underline mt-2">
+              Tekrar dene
+            </button>
           </div>
         )}
 
-        <ProjectFilter 
-          search={search}
-          onSearchChange={setSearch}
-          category={category}
-          onCategoryChange={setCategory}
-          sortField={sortField}
-          onSortFieldChange={setSortField}
-          sortOrder={sortOrder}
-          onSortOrderChange={setSortOrder}
-          resultCount={filteredProjects.length}
-          totalCount={projects.length}
-        />
+        {/* Filtreler */}
+        {!loading && !error && (
+          <ProjectFilter
+            search={search}
+            onSearchChange={setSearch}
+            category={category}
+            onCategoryChange={setCategory}
+            sortField={sortField}
+            onSortFieldChange={setSortField}
+            sortOrder={sortOrder}
+            onSortOrderChange={setSortOrder}
+            resultCount={filtered.length}
+            totalCount={projects.length}
+          />
+        )}
 
-        {filteredProjects.length === 0 ? (
-          <div className="text-center py-20 bg-gray-50 dark:bg-gray-900 rounded-3xl border-2 border-dashed border-gray-200 dark:border-gray-800">
-            <p className="text-gray-500">Aranan kriterlere uygun proje bulunamadı.</p>
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredProjects.map((project) => (
-              <ProjectCard key={project.id} project={project} />
-            ))}
+        {/* Yukleniyor */}
+        {loading && (
+          <div className="flex justify-center py-12">
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600" />
           </div>
         )}
+
+        {/* Bos durum */}
+        {!loading && !error &&
+          filtered.length === 0 && (
+            <p className="text-center text-gray-500 py-12">
+              Eslesen proje bulunamadi.
+            </p>
+          )}
+
+        {/* Proje grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {filtered.map(project => (
+            <article key={project.id}
+              className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-lg transition-shadow">
+
+              {/* Gorsel */}
+              <div className="h-48 bg-gradient-to-br from-blue-100 to-indigo-100 dark:from-gray-700 dark:to-gray-600 flex items-center justify-center">
+                <span className="text-4xl opacity-50">
+                  &#128187;
+                </span>
+              </div>
+
+              {/* Icerik */}
+              <div className="p-4">
+                <div className="flex items-start justify-between mb-2">
+                  <h3 className="font-bold text-gray-900 dark:text-white">
+                    {project.title}
+                  </h3>
+                  {project.featured && (
+                    <span className="bg-yellow-100 text-yellow-800 text-xs px-2 py-0.5 rounded-full">
+                      One Cikan
+                    </span>
+                  )}
+                </div>
+                <p className="text-sm text-gray-600 dark:text-gray-300 mb-3">
+                  {project.description}
+                </p>
+                <div className="flex flex-wrap gap-1 mb-3">
+                  {project.tech.map(t => (
+                    <span key={t}
+                      className="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 text-xs px-2 py-0.5 rounded-full">
+                      {t}
+                    </span>
+                  ))}
+                </div>
+                <p className="text-xs text-gray-400">
+                  {project.year}
+                  {" \u00B7 "}
+                  {project.category}
+                </p>
+              </div>
+            </article>
+          ))}
+        </div>
       </div>
     </section>
   );
