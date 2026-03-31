@@ -1,31 +1,13 @@
-// Kategori tipleri
-export type Category = 
-  | "frontend"
-  | "fullstack"
-  | "backend";
+export type Category = 'frontend' | 'backend' | 'fullstack';
+export type SortField = 'year' | 'title';
+export type SortOrder = 'asc' | 'desc';
 
-// Siralama secenekleri
-export type SortField = "year" | "title";
-export type SortOrder = "asc" | "desc";
-
-// Proje veri modeli
 export interface Project {
-  readonly id: number;
+  id: number;
   title: string;
   description: string;
+  category: Category;
   tech: string[];
   year: number;
-  category: Category;
-  featured: boolean;
-  image: string;
-  demoUrl?: string;
-  sourceUrl?: string;
-}
-
-// Filtre durumu
-export interface FilterState {
-  search: string;
-  category: Category | "all";
-  sortField: SortField;
-  sortOrder: SortOrder;
+  featured?: boolean;
 }
