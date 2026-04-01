@@ -1,5 +1,4 @@
 import { Project } from "../../types/project";
-import Card from "../ui/Card";
 
 interface ProjectCardProps {
   project: Project;
@@ -7,7 +6,7 @@ interface ProjectCardProps {
 
 export default function ProjectCard({ project }: ProjectCardProps) {
   return (
-    <Card className="group h-full flex flex-col">
+    <article className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-xl transition-all duration-300 group">
       {/* Visual Placeholder */}
       <div className="h-48 bg-gradient-to-br from-blue-100 to-indigo-100 dark:from-gray-700 dark:to-gray-600 flex items-center justify-center relative overflow-hidden">
         <div className="absolute inset-0 bg-blue-600/0 group-hover:bg-blue-600/5 transition-colors duration-300"></div>
@@ -16,7 +15,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         </span>
       </div>
 
-      <div className="p-6 flex-1 flex flex-col">
+      <div className="p-6">
         <div className="flex items-start justify-between mb-3">
           <h3 className="font-bold text-xl text-gray-900 dark:text-white group-hover:text-blue-600 transition-colors">
             {project.title}
@@ -52,6 +51,6 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           </a>
         </div>
       </div>
-    </Card>
+    </article>
   );
 }

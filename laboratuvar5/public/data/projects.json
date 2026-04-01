@@ -2,43 +2,51 @@
   {
     "id": 1,
     "title": "E-Ticaret Platformu",
-    "description": "React ve Node.js ile geliştirilmiş tam kapsamlı alışveriş sitesi.",
-    "category": "fullstack",
-    "tech": ["React", "Node.js", "MongoDB", "Tailwind"],
+    "description": "React ve Node.js ile tam kapsamlı e-ticaret uygulaması.",
+    "tech": ["React", "Node.js", "MongoDB"],
     "year": 2024,
-    "featured": true
+    "category": "fullstack",
+    "featured": true,
+    "image": "/images/ecommerce.jpg"
   },
   {
     "id": 2,
-    "title": "Hava Durumu Uygulaması",
-    "description": "Anlık hava durumu verilerini gösteren modern arayüzlü uygulama.",
+    "title": "Blog Uygulaması",
+    "description": "Next.js ile SEO dostu kişisel blog platformu.",
+    "tech": ["Next.js", "TypeScript", "Tailwind"],
+    "year": 2024,
     "category": "frontend",
-    "tech": ["React", "TypeScript", "OpenWeather API"],
-    "year": 2023
+    "featured": false,
+    "image": "/images/blog.jpg"
   },
   {
     "id": 3,
-    "title": "Blog Yönetim Paneli",
-    "description": "İçerik editörleri için gelişmiş dashboard tasarımı.",
+    "title": "Hava Durumu API",
+    "description": "OpenWeather API ile anlık hava durumu sorgulama.",
+    "tech": ["JavaScript", "REST API", "CSS"],
+    "year": 2023,
     "category": "frontend",
-    "tech": ["React", "Chart.js", "Tailwind CSS"],
-    "year": 2024,
-    "featured": true
+    "featured": true,
+    "image": "/images/weather.jpg"
   },
   {
     "id": 4,
-    "title": "Restoran Sipariş API",
-    "description": "Yüksek performanslı, ölçeklenebilir backend mimarisi.",
-    "category": "backend",
-    "tech": ["Express", "PostgreSQL", "Docker"],
-    "year": 2022
+    "title": "Görev Yöneticisi",
+    "description": "Drag-and-drop destekli Kanban tarzı görev panosu.",
+    "tech": ["React", "TypeScript", "DnD Kit"],
+    "year": 2024,
+    "category": "frontend",
+    "featured": false,
+    "image": "/images/taskboard.jpg"
   },
   {
     "id": 5,
-    "title": "Kişisel Portfolyo v2",
-    "description": "Modern animasyonlar ve karanlık mod destekli kişisel site.",
-    "category": "frontend",
-    "tech": ["React", "Framer Motion", "Tailwind"],
-    "year": 2024
+    "title": "Chat Uygulaması",
+    "description": "WebSocket ile gerçek zamanlı mesajlaşma.",
+    "tech": ["Socket.io", "React", "Node.js"],
+    "year": 2024,
+    "category": "fullstack",
+    "featured": true,
+    "image": "/images/chat.jpg"
   }
 ]

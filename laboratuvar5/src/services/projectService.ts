@@ -1,9 +1,22 @@
-import { Project } from "../types/project";
+import type { Project } from "../types/project";
 
-export const fetchProjects = async (): Promise<Project[]> => {
-  const response = await fetch("/data/projects.json");
-  if (!response.ok) {
-    throw new Error("Projeler yuklenirken bir hata olustu.");
+const API_URL = "/data/projects.json";
+
+export async function fetchProjects(): Promise<Project[]> {
+  try {
+    const response = await fetch(API_URL);
+
+    if (!response.ok) {
+      throw new Error(
+        `Projeler yuklenemedi: ${response.status}`
+      );
+    }
+
+    const data: Project[] = await response.json();
+    return data;
+
+  } catch (error) {
+    console.error("Veri cekme hatasi:", error);
+    throw error; // Hatayi yukari ilet
   }
-  return response.json();
-};
+}
