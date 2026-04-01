@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "title": "E-Ticaret Platformu",
+    "description": "React ve Node.js ile geliştirilmiş tam kapsamlı alışveriş sitesi.",
+    "category": "fullstack",
+    "tech": ["React", "Node.js", "MongoDB", "Tailwind"],
+    "year": 2024,
+    "featured": true
+  },
+  {
+    "id": 2,
+    "title": "Hava Durumu Uygulaması",
+    "description": "Anlık hava durumu verilerini gösteren modern arayüzlü uygulama.",
+    "category": "frontend",
+    "tech": ["React", "TypeScript", "OpenWeather API"],
+    "year": 2023
+  },
+  {
+    "id": 3,
+    "title": "Blog Yönetim Paneli",
+    "description": "İçerik editörleri için gelişmiş dashboard tasarımı.",
+    "category": "frontend",
+    "tech": ["React", "Chart.js", "Tailwind CSS"],
+    "year": 2024,
+    "featured": true
+  },
+  {
+    "id": 4,
+    "title": "Restoran Sipariş API",
+    "description": "Yüksek performanslı, ölçeklenebilir backend mimarisi.",
+    "category": "backend",
+    "tech": ["Express", "PostgreSQL", "Docker"],
+    "year": 2022
+  },
+  {
+    "id": 5,
+    "title": "Kişisel Portfolyo v2",
+    "description": "Modern animasyonlar ve karanlık mod destekli kişisel site.",
+    "category": "frontend",
+    "tech": ["React", "Framer Motion", "Tailwind"],
+    "year": 2024
+  }
+]
